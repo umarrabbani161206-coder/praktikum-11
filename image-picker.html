@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Picker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .container {
+            width: 350px;
+        }
+
+        img {
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Image Picker</h2>
+
+        <select id="imgSelect" onchange="tampilkanGambar()">
+            <option value="">-- Pilih Gambar --</option>
+            <option value="ss (3).jpg">Gambar 1</option>
+            <option value="ss (2).jpg">Gambar 2</option>
+            <option value="ss (1).jpg">Gambar 3</option>
+            <option value="ss.jpg">Gambar 4</option>
+            <option value="alpukat.jpg">Gambar 5</option>
+            <option value="alpukat2.jpg">Gambar 6</option>
+        </select>
+
+        <img id="preview">
+    </div>
+
+    <script>
+        function tampilkanGambar() {
+            let file = document.getElementById("imgSelect").value;
+            let img = document.getElementById("preview");
+
+            if (file === "") {
+                img.style.display = "none";
+                return;
+            }
+
+            alert("Menampilkan: " + file);
+
+            img.src = file; 
+            img.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

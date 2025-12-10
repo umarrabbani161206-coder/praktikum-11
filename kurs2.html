@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Modern</title>
+</head>
+<body>
+
+    <h2>Form Pemesanan Tiket</h2>
+
+    <form id="form">
+
+        <!-- Nama -->
+        <label>Nama :</label><br>
+        <input type="text" id="name" placeholder="Masukkan Nama">
+        <small id="errName" style="color:red"></small>
+        <br><br>
+
+        <!-- Email -->
+        <label>Email :</label><br>
+        <input type="email" id="email" placeholder="Masukkan Email">
+        <small id="errEmail" style="color:red"></small>
+        <br><br>
+
+        <!-- Jam -->
+        <label>Jam Keberangkatan :</label><br>
+        <input type="text" id="Jam" placeholder="Format 00.00 - 23.59">
+        <small id="errJam" style="color:red"></small>
+        <br><br>
+
+        <!-- Tujuan -->
+        <label>Tujuan :</label><br>
+        <input type="text" id="tujuan" placeholder="Masukkan tujuan">
+        <small id="errTujuan" style="color:red"></small>
+        <br><br>
+
+        <!-- Tiket -->
+        <label>Jumlah Tiket :</label><br>
+        <input type="number" id="tiket" placeholder="1 - 10">
+        <small id="errTiket" style="color:red"></small>
+        <br><br>
+
+        <input type="button" value="Submit" onclick="formValidation()">
+    </form>
+
+    <hr>
+
+    <h3 id="hasil"></h3>
+    <p id="hasilName"></p>
+    <p id="hasilEmail"></p>
+    <p id="hasilJam"></p>
+    <p id="hasilTujuan"></p>
+    <p id="hasilTiket"></p>
+
+    <script>
+        function formValidation() {
+            // Ambil nilai
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let Jam = document.getElementById("Jam").value.trim();
+            let tujuan = document.getElementById("tujuan").value.trim();
+            let tiket = document.getElementById("tiket").value;
+
+            // Reset error
+            document.getElementById("errName").innerHTML = "";
+            document.getElementById("errEmail").innerHTML = "";
+            document.getElementById("errJam").innerHTML = "";
+            document.getElementById("errTujuan").innerHTML = "";
+            document.getElementById("errTiket").innerHTML = "";
+            document.getElementById("hasil").innerHTML = "";
+
+            let valid = true;
+
+            // Validasi Nama (required + max 30 karakter)
+            if (name === "") {
+                document.getElementById("errName").innerHTML = "Nama wajib diisi.";
+                valid = false;
+            } else if (name.length > 30) {
+                document.getElementById("errName").innerHTML = "Maksimum 30 karakter.";
+                valid = false;
+            }
+
+            // Validasi Email
+            let emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === "") {
+                document.getElementById("errEmail").innerHTML = "Email wajib diisi.";
+                valid = false;
+            } else if (!emailFormat.test(email)) {
+                document.getElementById("errEmail").innerHTML = "Format email tidak valid.";
+                valid = false;
+            }
+
+            // Validasi Jam 00.00 - 23.59
+            let jamFormat = /^([01]\d|2[0-3])\.[0-5]\d$/;
+            if (Jam === "") {
+                document.getElementById("errJam").innerHTML = "Jam wajib diisi.";
+                valid = false;
+            } else if (!jamFormat.test(Jam)) {
+                document.getElementById("errJam").innerHTML = "Format jam tidak valid.";
+                valid = false;
+            }
+
+            // Validasi Tujuan
+            if (tujuan === "") {
+                document.getElementById("errTujuan").innerHTML = "Tujuan wajib diisi.";
+                valid = false;
+            }
+
+            // Validasi Tiket 1-10
+            if (tiket === "") {
+                document.getElementById("errTiket").innerHTML = "Jumlah tiket wajib diisi.";
+                valid = false;
+            } else if (tiket < 1 || tiket > 10) {
+                document.getElementById("errTiket").innerHTML = "Jumlah tiket harus 1 - 10.";
+                valid = false;
+            }
+
+            // Jika gagal
+            if (!valid) return false;
+
+            // Jika berhasil
+            document.getElementById("hasil").innerText = "Form berhasil disubmit!";
+            document.getElementById("hasilName").innerText = "Nama: " + name;
+            document.getElementById("hasilEmail").innerText = "Email: " + email;
+            document.getElementById("hasilJam").innerText = "Jam Keberangkatan: " + Jam;
+            document.getElementById("hasilTujuan").innerText = "Tujuan: " + tujuan;
+            document.getElementById("hasilTiket").innerText = "Jumlah Tiket: " + tiket;
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>

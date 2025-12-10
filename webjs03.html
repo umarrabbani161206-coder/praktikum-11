@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>belajar js</title>
+    <script>
+        let buah = ["mangga", "apel", "jeruk", "semangka"];
+        buah.push("anggur");
+        console.log("buah index ke -1" + buah[1]);
+        for (let i = 0; i < buah.length; i++) {
+            console.log("buah index ke - " + i + " adalah " + buah[i]);
+        }
+        function isidata() {
+            let selectbuah = document.getElementById("buah")[0];
+            for (let i = 0; i < buah.length; i++) {
+                let option = document.createElement("option");
+                option.value = buah[i];
+                option.text = buah[i];
+                selectbuah.appendChild(optionbaru);
+            }
+        }
+
+        function pilih() {
+            let selectbuah = document.getElementById("buah");
+            let buahterpilih = selectbuah.options[selectbuah.selectedIndex].value;
+            console.log("buah favoritmu adalah " + buahterpilih);
+            alert("buah favoritmu adalah " + buahterpilih);
+        }
+    </script>
+</head>
+<body onload="isidata()">
+    <form>
+        pilih buah favoritmu:
+        <select id ="buah" onchange="pilih()">
+            <option value="anggur">anggur</option>
+           
+    </form>
+</body>
+</html>

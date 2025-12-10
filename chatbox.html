@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox Umar Ganteng</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 2000px; 
+        }
+
+        .chatbox {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .messages {
+            height: 300px;
+            padding: 10px;
+            overflow-y: auto;
+            background: #f7f7f7;
+        }
+
+        .bubble {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .input-area button {
+            padding: 10px 15px;
+            background: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .input-area button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chatbox">
+        <div class="messages" id="messages"></div>
+
+        <div class="input-area">
+            <input type="text" id="inputChat" placeholder="Tulis pesan...">
+            <button onclick="kirimPesan()">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        function kirimPesan() {
+            let input = document.getElementById("inputChat");
+            let pesan = input.value.trim();
+
+            if (pesan === "") return;
+
+            let messagesDiv = document.getElementById("messages");
+
+            let bubble = document.createElement("div");
+            bubble.classList.add("bubble");
+            bubble.innerText = pesan;
+
+            messagesDiv.appendChild(bubble);
+
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            input.value = "";
+        }
+    </script>
+
+</body>
+</html>
